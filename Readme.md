@@ -32,9 +32,13 @@ cd third_party/diff-gaussian-rasterization &&  pip install -e .
 ## Pretrained weights
 Pretrained weights can be downloaded from [Hugging Face](https://huggingface.co/justimyhxu/GRM/tree/main).
 ```bash
-# Example
+# Download weights
 mkdir checkpoints && cd checkpoints
-wget https://huggingface.co/justimyhxu/GRM/resolve/main/grm_u.pth -O grm_u.pth && cd ..
+wget https://huggingface.co/justimyhxu/GRM/resolve/main/grm_u.pth -O grm_u.pth
+wget https://huggingface.co/justimyhxu/GRM/resolve/main/grm_r.pth -O grm_r.pth
+wget https://huggingface.co/justimyhxu/GRM/resolve/main/grm_zero123plus.pth -O grm_zero123plus.pth
+cd ..
+
 ```
 
 Note that we provide three checkpoints for use. We use the OpenCV coordinate system.
