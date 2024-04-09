@@ -53,20 +53,26 @@ Note that we provide three checkpoints for use. We use the OpenCV coordinate sys
 Besides, you need to download checkpoints for [SV3D](https://huggingface.co/stabilityai/sv3d/tree/main).
 ```bash
 cd checkpoints
-wget https://huggingface.co/stabilityai/sv3d/blob/main/sv3d_p.safetensors && cd ..
+wget --header="Authorization: Bearer HF_TOKEN" https://huggingface.co/stabilityai/sv3d/resolve/main/sv3d_p.safetensors -O sv3d_p.safetensors && cd ..
 ```
 
 
 ## Inference
+
 ```bash
+# export cuda
+export CUDA_HOME=/usr/local/cuda-11.8
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+
 # text-to-3D
 python test.py --prompt 'a car made out of cheese'
 # image-to-3D with zero123plus-v1.1
 python test.py --image_path examples/dragon2.png --model zero123plus-v1.1
 # image-to-3D with zero123plus-v1.2
-python test.py --image_path examples/dragon2.png --model zero123plus-v1.2
+python test.py --image_path examples/dragon2.png --model zero123plus-v1.2 --fuse_mesh True --optimize_texture True
 # image-to-3D with SV3D
-python test.py --image_path examples/dragon2.png --model sv3d
+python test.py --image_path examples/dragon2.png --model sv3d --fuse_mesh True --optimize_texture True
 ```
 
 Add ```--fuse_mesh True``` if you would like to get the textured mesh.
